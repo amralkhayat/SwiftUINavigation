@@ -33,7 +33,7 @@ struct MainView: View {
                         .cornerRadius(12)
                 }
                 
-                NavigationButton(sheet: .SheetView) {
+                NavigationButton(sheet: .sheetView) {
                     Text("Show Sheet")
                         .font(.headline)
                         .frame(maxWidth: .infinity)

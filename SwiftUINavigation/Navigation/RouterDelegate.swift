@@ -6,31 +6,63 @@
 //
 import SwiftUI
 
-protocol NavigationRouterDelegate {
+import SwiftUI
+
+/// A protocol that defines how to resolve views for navigation destinations.
+///
+/// Conforming types are responsible for returning views based on the specific type of destination:
+/// - `PushDestination` for push navigation
+/// - `SheetDestination` for sheets
+/// - `FullScreenDestination` for full-screen covers
+///
+/// This allows your navigation system to remain decoupled from view construction.
+public protocol NavigationRouterDelegate {
+
+    /// Returns the view to present for a given push destination.
+    ///
+    /// - Parameter destination: A push navigation target.
+    /// - Returns: A type-erased view to display in a `NavigationStack`.
     func view(for destination: PushDestination) -> AnyView
+
+    /// Returns the view to present as a sheet.
+    ///
+    /// - Parameter destination: A sheet destination.
+    /// - Returns: A type-erased view to present in a `.sheet`.
     func sheet(for destination: SheetDestination) -> AnyView
+
+    /// Returns the view to present as a full-screen cover.
+    ///
+    /// - Parameter destination: A full-screen destination.
+    /// - Returns: A type-erased view to present in a `.fullScreenCover`.
     func fullScreen(for destination: FullScreenDestination) -> AnyView
 }
 
-struct RouterDelegate: NavigationRouterDelegate {
-    func view(for destination: PushDestination) -> AnyView {
+/// A concrete implementation of `NavigationRouterDelegate` for resolving views.
+///
+/// Replace the example views here (`PushView`, `SheetView`, `FullScreenView`) with your actual view types.
+public struct RouterDelegate: NavigationRouterDelegate {
+
+    public init() {}
+
+    public func view(for destination: PushDestination) -> AnyView {
         switch destination {
         case .pushView:
             return AnyView(PushView())
         }
     }
 
-    func sheet(for destination: SheetDestination) -> AnyView {
+    public func sheet(for destination: SheetDestination) -> AnyView {
         switch destination {
-        case .SheetView:
+        case .sheetView:
             return AnyView(SheetView())
         }
     }
 
-    func fullScreen(for destination: FullScreenDestination) -> AnyView {
+    public func fullScreen(for destination: FullScreenDestination) -> AnyView {
         switch destination {
         case .fullScreenView:
             return AnyView(FullScreenView())
         }
     }
 }
+
