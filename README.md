@@ -55,3 +55,6 @@ This project is available under the MIT license. See the LICENSE file for more i
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.   can you improve it 
+
+## Resources
+https://www.youtube.com/watch?v=Z-3ETLYbhFA
